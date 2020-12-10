@@ -1,8 +1,6 @@
 package io.kovac.nft.base.crypto.transactions;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import io.kovac.nft.base.crypto.enums.NFTTransactionTypes;
 import io.kovac.nft.base.crypto.enums.NFTTypeGroup;
 import io.kovac.nft.base.utls.Cloning;

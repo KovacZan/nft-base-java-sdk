@@ -8,7 +8,6 @@ import org.arkecosystem.crypto.transactions.types.Transaction;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
