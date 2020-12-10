@@ -2,6 +2,7 @@ package io.kovac.nft.base.crypto.transactions;
 
 import io.kovac.nft.base.crypto.enums.NFTTransactionTypes;
 import io.kovac.nft.base.crypto.enums.NFTTypeGroup;
+import org.arkecosystem.crypto.encoding.Hex;
 import org.arkecosystem.crypto.transactions.types.Transaction;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -31,12 +32,11 @@ public class NFTBurn extends Transaction {
     public byte[] serialize() {
         Map <String, String> nftBurn = (Map<String, String>) this.asset.customAsset.get("nftBurn");
         String nftId = nftBurn.get("nftId");
-        byte[] nftIdBuffer = nftId.getBytes();
 
         ByteBuffer buffer = ByteBuffer.allocate(32);
         buffer.order(ByteOrder.LITTLE_ENDIAN);
 
-        buffer.put(nftIdBuffer);
+        buffer.put(Hex.decode(nftId));
 
         return buffer.array();
     }
