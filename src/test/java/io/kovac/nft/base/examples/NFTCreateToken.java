@@ -3,7 +3,7 @@ package io.kovac.nft.base.examples;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
-import io.kovac.nft.base.crypto.builders.NFTRegisterCollectionBuilder;
+import io.kovac.nft.base.crypto.builders.NFTCreateBuilder;
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.crypto.configuration.Network;
 import org.arkecosystem.crypto.identities.Address;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NFTRegisterCollection {
+public class NFTCreateToken {
 
     public static long getNonce(Connection connection, String senderWallet) throws IOException {
         return Long.valueOf (((Map<String, Object>) connection.api().wallets.show(senderWallet).get("data")).get("nonce").toString());
@@ -35,9 +35,9 @@ public class NFTRegisterCollection {
 
         List payload = new ArrayList<>();
 
-        Transaction transaction = new NFTRegisterCollectionBuilder()
+        Transaction transaction = new NFTCreateBuilder()
                 .nonce(nonce)
-                .NFTRegisterCollectionAsset("Test1", "Test java", 100000, "{\"properties\":{\"name\":{\"type\":\"string\"},\"damage\":{\"type\":\"integer\"},\"health\":{\"type\":\"integer\"},\"mana\":{\"type\":\"integer\"}}}")
+                .NFTCreateToken("fd23ed90d7cd6b5978ad55239256c4fc5ec6767ccde1a006c380645ba155f194", "{\"name\":\"card name\",\"damage\":3,\"health\":2,\"mana\":2}")
                 .sign("clay harbor enemy utility margin pretty hub comic piece aerobic umbrella acquire")
                 .transaction;
 

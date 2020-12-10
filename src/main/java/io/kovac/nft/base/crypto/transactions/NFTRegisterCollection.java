@@ -12,6 +12,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,10 +34,7 @@ public class NFTRegisterCollection extends Transaction {
 
         String schema = (String) ((Map<String,Object>)map.get("nftCollection")).get("jsonSchema");
 
-        JsonParser parser = new JsonParser();
-        JsonObject o = parser.parse(schema).getAsJsonObject();
-
-        HashMap<String, Object> schemaMap = new Gson().fromJson(o, HashMap.class);
+        LinkedHashMap<String, Object> schemaMap = new Gson().fromJson(schema, LinkedHashMap.class);
         ((Map<String,Object>)map.get("nftCollection")).put("jsonSchema", schemaMap);
 
         return map;

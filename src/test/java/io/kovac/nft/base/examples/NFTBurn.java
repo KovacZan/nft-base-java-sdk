@@ -1,5 +1,8 @@
 package io.kovac.nft.base.examples;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 import io.kovac.nft.base.crypto.builders.NFTBurnBuilder;
 import org.arkecosystem.client.Connection;
 import org.arkecosystem.crypto.configuration.Network;
@@ -14,9 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 public class NFTBurn {
+
     public static long getNonce(Connection connection, String senderWallet) throws IOException {
         return Long.valueOf (((Map<String, Object>) connection.api().wallets.show(senderWallet).get("data")).get("nonce").toString());
     }
+
     public static void main(String[] args) throws IOException {
         Network.set(new Testnet());
 
@@ -32,11 +37,18 @@ public class NFTBurn {
 
         Transaction transaction = new NFTBurnBuilder()
                 .nonce(nonce)
-                .NFTBurnAsset("NFT_ID")
+                .NFTBurnAsset("d5bee0aa35bc621509cac45154397dc5590c897e1ceae36ab3a2df73086a5cb2")
                 .sign("clay harbor enemy utility margin pretty hub comic piece aerobic umbrella acquire")
                 .transaction;
 
+
+        Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println("Formatted Json");
+        System.out.println(GSON.toJson(JsonParser.parseString(transaction.toJson())));
+
         payload.add(transaction.toHashMap());
+
+        System.out.println("Payload response");
         Map<String, Object> postResponse = connection.api().transactions.create(payload);
         System.out.println(postResponse);
     }
