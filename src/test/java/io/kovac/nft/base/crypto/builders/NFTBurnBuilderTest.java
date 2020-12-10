@@ -3,7 +3,7 @@ package io.kovac.nft.base.crypto.builders;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class NFTBurnBuilderTest {
     private NFTBurnBuilder nftBurnBuilder;

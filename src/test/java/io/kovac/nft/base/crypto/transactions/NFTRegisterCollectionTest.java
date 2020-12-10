@@ -2,8 +2,6 @@ package io.kovac.nft.base.crypto.transactions;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class NFTRegisterCollectionTest {
 
     @Test
