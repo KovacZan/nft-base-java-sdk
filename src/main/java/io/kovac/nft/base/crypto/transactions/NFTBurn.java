@@ -6,9 +6,12 @@ import org.arkecosystem.crypto.transactions.types.Transaction;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.HashMap;
+import java.util.Map;
 
 public class NFTBurn extends Transaction {
+
     @Override
     public int getTransactionType() {
         return NFTTransactionTypes.NFT_BURN.getValue();
@@ -21,12 +24,21 @@ public class NFTBurn extends Transaction {
 
     @Override
     public HashMap<String, Object> assetToHashMap() {
-        throw new NotImplementedException();
+        return this.asset.customAsset;
     }
 
     @Override
     public byte[] serialize() {
-        throw new NotImplementedException();
+        Map <String, String> nftBurn = (Map<String, String>) this.asset.customAsset.get("nftBurn");
+        String nftId = nftBurn.get("nftId");
+        byte[] nftIdBuffer = nftId.getBytes();
+
+        ByteBuffer buffer = ByteBuffer.allocate(32);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+        buffer.put(nftIdBuffer);
+
+        return buffer.array();
     }
 
     @Override
