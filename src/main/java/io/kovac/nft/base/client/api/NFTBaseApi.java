@@ -4,7 +4,7 @@ import io.kovac.nft.base.client.api.implementations.*;
 import io.kovac.nft.base.client.api.interfaces.*;
 import org.arkecosystem.client.http.Client;
 
-public class NFTApi {
+public class NFTBaseApi {
 
     public final IAssets assets;
     public final IBurns burns;
@@ -12,7 +12,7 @@ public class NFTApi {
     public final IConfigurations configurations;
     public final ITransfers transfers;
 
-    public NFTApi(Client client) {
+    public NFTBaseApi(Client client) {
         this.assets = new Assets(client);
         this.burns = new Burns(client);
         this.collections = new Collections(client);
